@@ -1,10 +1,9 @@
 ﻿namespace SwissTransport.Core
 {
-    using System;
-    using System.Net.Http;
-    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using SwissTransport.Models;
+    using System;
+    using System.Net.Http;
 
     public class Transport : ITransport, IDisposable
     {
