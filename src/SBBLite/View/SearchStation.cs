@@ -1,5 +1,6 @@
 ﻿using SwissTransport.Core;
 using SwissTransport.Models;
+using System.Runtime;
 
 namespace SBBLite.View
 {
@@ -72,10 +73,15 @@ namespace SBBLite.View
         // Switches to the StationInformation view with the name and id of the selected station.
         private void dgvStations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             try
             {
 
                 DataGridViewSelectedCellCollection selectedCells = dgvStations.SelectedCells;
+
+                if (string.IsNullOrEmpty(selectedCells[0].FormattedValue.ToString()) || string.IsNullOrEmpty(selectedCells[1].FormattedValue.ToString()))
+                    throw new ArgumentNullException("arg");
+
                 Form stationInfomration = new StationInformation(selectedCells[0].FormattedValue.ToString(), selectedCells[1].FormattedValue.ToString());
                 stationInfomration.Closed += (s, args) => this.Close();
                 stationInfomration.Show();
@@ -85,10 +91,12 @@ namespace SBBLite.View
             {
                 MessageBox.Show("Ungültige auswahl\n" + ex.Message);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("Ein unbekannter Fehler ist aufgetreten\n" + ex.Message);
             }
+
+
         }
 
         // Start the Search method as soon as the ENTER key in the combobox is pressed.
