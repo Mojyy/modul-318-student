@@ -37,5 +37,13 @@
 
             connections.Should().NotBeNull();
         }
+
+        [Fact]
+        public void ConnectionsWithDateTime()
+        {
+            Connections connections = this.testee.GetConnections("Sursee", "Luzern", "09.02.2022", "12:43:00");
+
+            connections.Should().NotBeNull();
+        }
     }
 }
