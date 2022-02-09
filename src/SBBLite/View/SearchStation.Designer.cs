@@ -37,8 +37,8 @@
             this.StationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbxStation = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxSearchedStation = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -157,15 +157,9 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Name";
             // 
-            // tbxStation
-            // 
-            this.tbxStation.Location = new System.Drawing.Point(67, 122);
-            this.tbxStation.Name = "tbxStation";
-            this.tbxStation.Size = new System.Drawing.Size(494, 27);
-            this.tbxStation.TabIndex = 7;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbxSearchedStation);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Location = new System.Drawing.Point(35, 70);
             this.groupBox1.Name = "groupBox1";
@@ -173,6 +167,15 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Station suchen";
+            // 
+            // cbxSearchedStation
+            // 
+            this.cbxSearchedStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.cbxSearchedStation.Location = new System.Drawing.Point(32, 52);
+            this.cbxSearchedStation.Name = "cbxSearchedStation";
+            this.cbxSearchedStation.Size = new System.Drawing.Size(483, 28);
+            this.cbxSearchedStation.TabIndex = 6;
+            this.cbxSearchedStation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxSearchedStation_KeyPress);
             // 
             // btnSearch
             // 
@@ -186,13 +189,13 @@
             // 
             // SearchStation
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbxStation);
             this.Controls.Add(this.groupBox1);
             this.Name = "SearchStation";
             this.Text = "SearchStation";
@@ -214,10 +217,10 @@
         private GroupBox groupBox2;
         private DataGridView dgvStations;
         private Label label1;
-        private TextBox tbxStation;
         private GroupBox groupBox1;
         private Button btnSearch;
         private DataGridViewTextBoxColumn StationName;
         private DataGridViewTextBoxColumn StationID;
+        private ComboBox cbxSearchedStation;
     }
 }

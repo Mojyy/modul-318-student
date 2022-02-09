@@ -1,9 +1,9 @@
 ﻿namespace SwissTransport.Core
 {
-    using Newtonsoft.Json;
-    using SwissTransport.Models;
     using System;
     using System.Net.Http;
+    using Newtonsoft.Json;
+    using SwissTransport.Models;
 
     public class Transport : ITransport, IDisposable
     {
@@ -51,6 +51,22 @@
             }
 
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
+            return this.GetObject<Connections>(uri);
+        }
+
+        public Connections GetConnections(string fromStation, string toStation, string date, string time)
+        {
+            if (string.IsNullOrEmpty(fromStation))
+            {
+                throw new ArgumentNullException(nameof(fromStation));
+            }
+
+            if (string.IsNullOrEmpty(toStation))
+            {
+                throw new ArgumentNullException(nameof(toStation));
+            }
+
+            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}&date={date}&time={time}");
             return this.GetObject<Connections>(uri);
         }
 

@@ -18,20 +18,26 @@ namespace SBBLite.View
         {
             InitializeComponent();
 
+            lblStationName.Text = stationName;
+
             ITransport transport = new Transport();
             StationBoardRoot stationBoardRoot = transport.GetStationBoard(stationName, stationId);
+            Connections connections;
             Connection connection;
 
-            foreach (StationBoard stationBoard in stationBoardRoot.Entries)
+            foreach(StationBoard stationBoard in stationBoardRoot.Entries.Distinct())
             {
-                connection = transport.GetConnections(stationName, stationBoard.To).ConnectionList.First();
-                
+                connections = transport.GetConnections(stationName, stationBoard.To);
+                for (int i = 0; i < stationBoardRoot.Entries.Where(x=>x.Name == stationBoard.Name).ToList().Count(); i++)
+                {
+                    connection = connections.ConnectionList[i];
                     dgvConnections.Rows.Add
-                        (
-                        $"{connection.From.Departure.Value.ToString("HH:mm")}\n{connection.To.Arrival.Value.ToString("HH:mm")}",
-                        $"{connection.From.Station.Name}\n{connection.To.Station.Name}",
-                        $"Gleis:  {connection.From.Platform}\nGleis:  {connection.To.Platform}"
-                        );
+                       (
+                       $"{connection.From.Departure.Value.ToString("HH:mm")}\n{connection.To.Arrival.Value.ToString("HH:mm")}",
+                       $"{connection.From.Station.Name}\n{connection.To.Station.Name}",
+                       $"Gleis:  {connection.From.Platform}\nGleis:  {connection.To.Platform}"
+                       );
+                }
                 
             }
             dgvConnections.Sort(dgvConnections.Columns[0], ListSortDirection.Ascending);

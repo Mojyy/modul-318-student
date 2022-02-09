@@ -41,11 +41,12 @@
             // lblStationName
             // 
             this.lblStationName.AutoSize = true;
+            this.lblStationName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblStationName.Location = new System.Drawing.Point(26, 19);
             this.lblStationName.Name = "lblStationName";
-            this.lblStationName.Size = new System.Drawing.Size(50, 20);
+            this.lblStationName.Size = new System.Drawing.Size(148, 28);
             this.lblStationName.TabIndex = 0;
-            this.lblStationName.Text = "label1";
+            this.lblStationName.Text = "lblStationName";
             // 
             // gbxCurrentConnections
             // 
